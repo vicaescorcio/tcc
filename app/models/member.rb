@@ -3,6 +3,11 @@ class Member < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,:omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
+  enum   role: {citzen:0,provider:1,city_hall:2}
+ 
+
+  validates :name, :email, :district, :birthday, :role, presence:true
+
   def self.from_omniauth(auth)
       where(provider: auth.provider, uid: auth.uid).first_or_create do |member|
          member.email = auth.info.email
