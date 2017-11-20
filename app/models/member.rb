@@ -6,14 +6,22 @@ class Member < ApplicationRecord
   enum   role: {citzen:0,provider:1,city_hall:2}
  
 
-  validates :name, :email, :district, :birthday, :role, presence:true
+  validates :name, :district, :birthday, :role, presence:true
 
   def self.from_omniauth(auth)
-      where(provider: auth.provider, uid: auth.uid).first_or_create do |member|
+      where(provider: auth.provider, uid: auth.uid).first_or_initialize do |member|
          member.email = auth.info.email
          member.name = auth.info.name
          member.password = Devise.friendly_token[0,20]
          member.image = auth.info.image
       end
+  end
+
+
+  def self.omniauth_registration(auth) 
+      new(provider: auth[:provider], uid: auth[:uid],
+         email: auth[:info][:email],
+         name: auth[:info][:name],
+         image: auth[:info][:image])
   end
 end
