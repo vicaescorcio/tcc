@@ -10,7 +10,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171104224649) do
+ActiveRecord::Schema.define(version: 20171121033800) do
+
+  create_table "comments", force: :cascade do |t|
+    t.string "body"
+    t.integer "support"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "contests", force: :cascade do |t|
+    t.string "title"
+    t.string "describe"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "ideas", force: :cascade do |t|
+    t.string "title"
+    t.string "describe"
+    t.integer "support"
+    t.string "local"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "members", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -35,6 +58,12 @@ ActiveRecord::Schema.define(version: 20171104224649) do
     t.integer "level"
     t.index ["email"], name: "index_members_on_email", unique: true
     t.index ["reset_password_token"], name: "index_members_on_reset_password_token", unique: true
+  end
+
+  create_table "sectors", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end

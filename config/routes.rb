@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  resources :comments
+  resources :ideas
+  resources :sectors
+  resources :contests
   devise_for :members, :controllers => { :omniauth_callbacks => "callbacks", :registrations => 'members/registrations' }
   root 'home#index'
   
