@@ -3,10 +3,14 @@ class Members::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_account_update_params, only: [:update]
   # GET /resource/sign_up
    def new 
-    member = Member.omniauth_registration(params[:auth])
+    if params[:auth] 
+    member = Member.omniauth_registration(params[:auth]) 
     build_resource({name:member.name, email:member.email, uid:member.uid, provider:member.provider})
-    respond_with resource 
-   end
+    respond_with resource
+    else 
+      super
+    end 
+  end
 
   # POST /resource
    def create

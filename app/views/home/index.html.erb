@@ -32,8 +32,17 @@
 </div>
 <div class="container">
   <div class="section">
- 
+    <div id="modal1" class="modal modal-fixed-footer">
+    </div>
+    <div id="modal2" class="modal modal-fixed-footer">
+    </div>
+    <a class="waves-effect waves-light btn modal-trigger" href="#modal1">Modal</a>
+    <%= current_member.role%>
+    <%= link_to 'Add release', new_idea_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal1'}  %>    
     <!--   Icon Section   -->
+    <%= link_to 'Add release', new_contest_path,  {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#modal2'}  %>    
+    <!--   Icon Section   -->
+    
     <div class="row">
       <div class="col s12 m4">
         <div class="icon-block">

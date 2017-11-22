@@ -1,0 +1,48 @@
+  <!-- Modal Structure -->
+       
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <p>A bunch of text</p>
+      <%= form_for(@idea, url: create_idea_path) do |f|  %>
+      <% if @idea.errors.any? %>
+        <div id="error_explanation">
+          <h2><%= pluralize(idea.errors.count, "error") %> prohibited this idea from being saved:</h2>
+    
+          <ul>
+          <% @idea.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+          </ul>
+        </div>
+      <% end %>
+    
+      <div class="field">
+        <%= f.label :title %>
+        <%= f.text_field :title, id: :idea_title %>
+      </div>
+    
+      <div class="field">
+        <%= f.label :describe %>
+        <%= f.text_field :describe, id: :idea_describe %>
+      </div>
+    
+      <div class="field">
+        <%= f.label :support %>
+        <%= f.number_field :support, id: :idea_support %>
+      </div>
+    
+      <div class="field">
+        <%= f.label :local %>
+        <%= f.text_field :local, id: :idea_local %>
+      </div>
+    
+      <div class="actions">
+        <%= f.submit %>
+      </div>
+    <% end %>
+    
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+    </div>
+  

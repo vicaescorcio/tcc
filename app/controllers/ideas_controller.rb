@@ -12,6 +12,15 @@ class IdeasController < ApplicationController
   def show
   end
 
+  def new_idea
+    respond_to do |format|
+      @idea = Idea.new
+      format.html
+      format.js
+    end
+  end
+
+
   # GET /ideas/new
   def new
     @idea = Idea.new
@@ -25,10 +34,10 @@ class IdeasController < ApplicationController
   # POST /ideas.json
   def create
     @idea = Idea.new(idea_params)
-
+    
     respond_to do |format|
       if @idea.save
-        format.html { redirect_to @idea, notice: 'Idea was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Idea was successfully created.' }
         format.json { render :show, status: :created, location: @idea }
       else
         format.html { render :new }

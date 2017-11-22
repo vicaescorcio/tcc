@@ -1,6 +1,6 @@
 class ContestsController < ApplicationController
   before_action :set_contest, only: [:show, :edit, :update, :destroy]
-
+  before_action :provider?, only:[:create]
   # GET /contests
   # GET /contests.json
   def index
@@ -17,6 +17,15 @@ class ContestsController < ApplicationController
     @contest = Contest.new
   end
 
+ def new_contest
+  respond_to do |format|
+    @contest = Contest.new
+    format.html
+    format.js
+  end
+
+ end
+
   # GET /contests/1/edit
   def edit
   end
@@ -28,7 +37,7 @@ class ContestsController < ApplicationController
 
     respond_to do |format|
       if @contest.save
-        format.html { redirect_to @contest, notice: 'Contest was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Contest was successfully created.' }
         format.json { render :show, status: :created, location: @contest }
       else
         format.html { render :new }
@@ -62,6 +71,10 @@ class ContestsController < ApplicationController
   end
 
   private
+
+    def provider?
+      current_member.role==1 || current_member.role==2
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_contest
       @contest = Contest.find(params[:id])
