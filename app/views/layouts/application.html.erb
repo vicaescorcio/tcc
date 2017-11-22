@@ -9,6 +9,84 @@
   </head>
 
   <body>
+      <div class="navbar-fixed">
+      <nav class="white">
+          <div class="nav-wrapper">
+            <a href="#" class="brand-logo center"><%= image_tag("/imgs/logo.png")%></a>
+            <a href="#" data-activates="slide-out" class=" button-s"> <i class="large material-icons">account_box</i></a> 
+          </div>
+          
+        </nav>
+        </div>
+        
+        <ul id="slide-out" class="side-nav">
+            <li><div class="user-view">
+              <div class="background">
+                <img src="images/office.jpg">
+              </div>
+              <a href="#!user"><img class="circle" src="images/yuna.jpg"></a>
+              <a href="#!name"><span class="white-text name">John Doe</span></a>
+              <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+            </div></li>
+            <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
+            <li><a href="#!">Second Link</a></li>
+            <li><div class="divider"></div></li>
+            <li><a class="subheader">Subheader</a></li>
+            <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+          </ul>
+          
+                
     <%= yield %>
+    <footer class="page-footer blue">
+        <div class="container">
+          <div class="row">
+            <div class="col l6 s12">
+              <h5 class="white-text">Company Bio</h5>
+              <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support
+                and continue development on this project and is greatly appreciated.</p>
+            </div>
+            <div class="col l3 s12">
+              <h5 class="white-text">Settings</h5>
+              <ul>
+                <li>
+                  <a class="white-text" href="#!">Link 1</a>
+                </li>
+                <li>
+                  <a class="white-text" href="#!">Link 2</a>
+                </li>
+                <li>
+                  <a class="white-text" href="#!">Link 3</a>
+                </li>
+                <li>
+                  <a class="white-text" href="#!">Link 4</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col l3 s12">
+              <h5 class="white-text">Connect</h5>
+              <ul>
+                <li>
+                  <a class="white-text" href="#!">Link 1</a>
+                </li>
+                <li>
+                  <a class="white-text" href="#!">Link 2</a>
+                </li>
+                <li>
+                  <a class="white-text" href="#!">Link 3</a>
+                </li>
+                <li>
+                  <a class="white-text" href="#!">Link 4</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="footer-copyright">
+          <div class="container">
+            Made by
+            <a class="blue-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+          </div>
+        </div>
+      </footer>
   </body>
 </html>

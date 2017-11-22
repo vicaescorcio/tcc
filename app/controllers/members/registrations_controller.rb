@@ -5,7 +5,7 @@ class Members::RegistrationsController < Devise::RegistrationsController
    def new 
     if params[:auth] 
     member = Member.omniauth_registration(params[:auth]) 
-    build_resource({name:member.name, email:member.email, uid:member.uid, provider:member.provider})
+    build_resource({name:member.name, email:member.email, uid:member.uid, provider:member.provider,image:member.image})
     respond_with resource
     else 
       super
@@ -17,6 +17,7 @@ class Members::RegistrationsController < Devise::RegistrationsController
     super do
       resource.provider = params[:provider]
       resource.uid = params[:uid]
+      resource.image = params[:image]
     end
    end
 

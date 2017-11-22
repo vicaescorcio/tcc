@@ -22,4 +22,7 @@
 $(document).ready(function(){
     // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
     $('.modal').modal();
+    $(".button-s").sideNav();
+    $('.carousel.carousel-slider').carousel({fullWidth: true,indicators:true});
+    $('select').material_select();
   });

@@ -15,6 +15,7 @@ class IdeasController < ApplicationController
   def new_idea
     respond_to do |format|
       @idea = Idea.new
+      @sectors = Sector.all
       format.html
       format.js
     end
@@ -34,12 +35,16 @@ class IdeasController < ApplicationController
   # POST /ideas.json
   def create
     @idea = Idea.new(idea_params)
-    
+    sectors_params.each do |k|
+      @idea.sectors << Sector.find_by(id:k)
+   end
     respond_to do |format|
       if @idea.save
+       
         format.html { redirect_to root_path, notice: 'Idea was successfully created.' }
         format.json { render :show, status: :created, location: @idea }
       else
+        debugger
         format.html { render :new }
         format.json { render json: @idea.errors, status: :unprocessable_entity }
       end
@@ -78,6 +83,9 @@ class IdeasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def idea_params
-      params.require(:idea).permit(:title, :describe, :support, :local)
+      params.require(:idea).permit(:title, :describe, :local,:kind,:sector_ids)
+    end
+    def sectors_params
+      params.require(:idea).permit(:sector_ids)
     end
 end
