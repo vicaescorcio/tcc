@@ -10,13 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171121033800) do
+ActiveRecord::Schema.define(version: 20171122035639) do
 
   create_table "comments", force: :cascade do |t|
     t.string "body"
     t.integer "support"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "member_id"
+    t.integer "idea_id"
   end
 
   create_table "contests", force: :cascade do |t|
@@ -24,6 +26,14 @@ ActiveRecord::Schema.define(version: 20171121033800) do
     t.string "describe"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "member_id"
+  end
+
+  create_table "contests_sectors", force: :cascade do |t|
+    t.integer "contest_id"
+    t.integer "sector_id"
+    t.index ["contest_id"], name: "index_contests_sectors_on_contest_id"
+    t.index ["sector_id"], name: "index_contests_sectors_on_sector_id"
   end
 
   create_table "ideas", force: :cascade do |t|
@@ -33,6 +43,14 @@ ActiveRecord::Schema.define(version: 20171121033800) do
     t.string "local"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "member_id"
+  end
+
+  create_table "ideas_sectors", force: :cascade do |t|
+    t.integer "idea_id"
+    t.integer "sector_id"
+    t.index ["idea_id"], name: "index_ideas_sectors_on_idea_id"
+    t.index ["sector_id"], name: "index_ideas_sectors_on_sector_id"
   end
 
   create_table "members", force: :cascade do |t|

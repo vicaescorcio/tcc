@@ -1,11 +1,13 @@
 class Member < ApplicationRecord
-  # Include default devise modules. Others available are:
+  has_many :ideas
+  has_many :contests
+  #has_many :comments
+    # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,:omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
   enum   role: {citzen:0,provider:1,city_hall:2}
- 
-
+  
   validates :name, :district, :birthday, :role, presence:true
 
   def self.from_omniauth(auth)
