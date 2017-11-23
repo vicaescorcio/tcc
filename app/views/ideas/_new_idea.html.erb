@@ -1,20 +1,11 @@
 <div class="modal-content">
   <h4>Nova Ideia</h4>
   <%= form_for(@idea, remote: true, :html => { :role => "form" }) do |f|  %>
-  <% if @idea.errors.any? %>
-    <div id="error_explanation">
-      <h2>
-        <%= pluralize(@idea.errors.count, "error") %> prohibited this idea from being saved:</h2>
-  
+  <div id="error_explanation" class="bg-danger text-danger">
       <ul>
-        <% @idea.errors.full_messages.each do |message| %>
-          <li>
-            <%= message %>
-          </li>
-          <% end %>
+        
       </ul>
     </div>
-    <% end %>
       <div class="field">
         <%= f.label :kind %>
         <%= f.select :kind, options_for_select(Idea.kinds.map {|type,value| [type,type]},selected: Idea.kinds[:proposal]) %>

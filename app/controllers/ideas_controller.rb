@@ -43,8 +43,8 @@ class IdeasController < ApplicationController
         format.json { head :no_content }
         format.js
       else
-        format.json { render json: @idea.errors.full_messages, 
-                            status: :unprocessable_entity }
+
+        format.json { render :json => { :error => @idea.errors.full_messages }, :status => 422 }
       end
       
     end

@@ -18,24 +18,13 @@
 //= require turbolinks
 //= require materialize-sprockets
 //= require_tree .
-
 $(document).ready(function(){
     // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
     $('.modal').modal();
     $(".button-s").sideNav();
     $('.carousel.carousel-slider').carousel({fullWidth: true,indicators:true});
     $('select').material_select();
+    
   });
 
-  $(document).ajaxError(function(event,xhr,options,exc) {
-    
-    var errors = JSON.parse(xhr.responseText);
-    var er ="<ul>";
-    for(var i = 0; i < errors.length; i++){
-        var list = errors[i];
-        er += "<li>"+list+"</li>"
-    }
-    er+="</ul>"
-    $("#error_explanation").html(er);
-       
-});
+ 
