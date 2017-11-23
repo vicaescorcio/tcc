@@ -34,19 +34,17 @@ class IdeasController < ApplicationController
   # POST /ideas
   # POST /ideas.json
   def create
-    @idea = Idea.new(idea_params)
+    @idea = current_member.ideas.new(idea_params)
     sectors_params.each do |k|
       @idea.sectors << Sector.find_by(id:k)
    end
-    respond_to do |format|
+   respond_to do |format|
       if @idea.save
-       
         format.html { redirect_to root_path, notice: 'Idea was successfully created.' }
-        format.json { render :show, status: :created, location: @idea }
+        format.json 
       else
-        debugger
-        format.html { render :new }
-        format.json { render json: @idea.errors, status: :unprocessable_entity }
+        format.html
+        format.js
       end
     end
   end
