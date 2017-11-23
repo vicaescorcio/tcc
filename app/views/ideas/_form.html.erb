@@ -1,0 +1,39 @@
+<%= form_for(@idea, url: create_idea_path) do |f|  %>
+<% if @idea.errors.any? %>
+  <div id="error_explanation">
+    <h2>
+      <%= pluralize(@idea.errors.count, "error") %> prohibited this idea from being saved:</h2>
+
+    <ul>
+      <% @idea.errors.full_messages.each do |message| %>
+        <li>
+          <%= message %>
+        </li>
+        <% end %>
+    </ul>
+  </div>
+  <% end %>
+    <div class="field">
+      <%= f.label :kind %>
+      <%= f.select :kind, options_for_select(Idea.kinds.map {|type,value| [type,type]},selected: Idea.kinds[:proposal]) %>
+      
+    </div>
+    <div class="field">
+      <%= f.label :title %>
+        <%= f.text_field :title, id: :idea_title %>
+    </div>
+    <div class="field">
+      <%= f.label :describe %>
+        <%= f.text_area :describe, size: "60x12", id: :idea_describe %>
+    </div>
+    <div class="field">
+      <%= f.label :local %>
+        <%= f.text_field :local, id: :idea_local %>
+    </div>
+    <div class="field">
+      <%=  collection_check_boxes(:idea, :sector_ids, Sector.all, :id, :name_with_initial)%>
+   </div>
+        <div class="actions">
+          <%= f.submit %>
+        </div>
+        <% end %>

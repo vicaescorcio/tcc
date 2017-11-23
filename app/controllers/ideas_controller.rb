@@ -38,14 +38,15 @@ class IdeasController < ApplicationController
     sectors_params.each do |k|
       @idea.sectors << Sector.find_by(id:k)
    end
-   respond_to do |format|
+    respond_to do |format|
       if @idea.save
-        format.html { redirect_to root_path, notice: 'Idea was successfully created.' }
-        format.json 
-      else
-        format.html
+        format.json { head :no_content }
         format.js
+      else
+        format.json { render json: @idea.errors.full_messages, 
+                            status: :unprocessable_entity }
       end
+      
     end
   end
 
