@@ -7,6 +7,41 @@ class IdeasController < ApplicationController
     @ideas = Idea.all
   end
 
+  def like
+    @idea = Idea.find_by(id:params[:id])
+    toggle = 0
+    if current_member.liked? @idea
+      current_member.unlike @idea
+      toggle = 1
+    elsif current_member.disliked? @idea
+      current_member.undislike @idea
+      current_member.likes @idea
+    else
+      current_member.likes @idea
+    end
+    respond_to do |format|
+      format.json { render json: [@idea.get_likes.size,@idea.get_dislikes.size,toggle]}
+     end
+  end
+  
+  def dislike
+    @idea = Idea.find_by(id:params[:id])
+    toggle = 0
+    if current_member.disliked? @idea
+      current_member.undislike @idea
+      toggle = 1
+    elsif current_member.liked? @idea
+      current_member.unlike @idea
+      current_member.dislikes @idea
+    else
+      current_member.dislikes @idea
+    end
+    respond_to do |format|
+        format.json { render json: [@idea.get_likes.size,@idea.get_dislikes.size,toggle]}
+    end
+
+  end
+
   # GET /ideas/1
   # GET /ideas/1.json
   def show

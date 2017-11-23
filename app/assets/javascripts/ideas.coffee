@@ -10,4 +10,9 @@ $(document).on "ajax:error", "form", (evt, xhr, status, error) ->
    console.log(errors)
    $('#error_explanation').append errors
  
+$(document).on 'ajax:success', 'a.vote', (status,data,xhr)->
+  # update counter
+     console.log(status.detail[2].responseText)
+  
+  
  

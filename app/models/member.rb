@@ -1,6 +1,7 @@
 class Member < ApplicationRecord
   has_many :ideas
   has_many :contests
+  acts_as_voter
   #has_many :comments
     # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
