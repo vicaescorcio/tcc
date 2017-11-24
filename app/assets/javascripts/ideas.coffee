@@ -12,7 +12,15 @@ $(document).on "ajax:error", "form", (evt, xhr, status, error) ->
  
 $(document).on 'ajax:success', 'a.vote', (status,data,xhr)->
   # update counter
-     console.log(status.detail[2].responseText)
-  
-  
+     buttons = $('a.vote')
+     array = JSON.parse status.detail[2].responseText
+     toggle = array[2]
+     if toggle is 1
+       $(this).removeClass('active')
+     else if toggle is 2
+       buttons.not(this).removeClass('active')
+       $(this).addClass('active')
+     else 
+       $(this).addClass('active')
+
  

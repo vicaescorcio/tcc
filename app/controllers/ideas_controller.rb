@@ -16,6 +16,7 @@ class IdeasController < ApplicationController
     elsif current_member.disliked? @idea
       current_member.undislike @idea
       current_member.likes @idea
+      toggle = 2
     else
       current_member.likes @idea
     end
@@ -33,6 +34,7 @@ class IdeasController < ApplicationController
     elsif current_member.liked? @idea
       current_member.unlike @idea
       current_member.dislikes @idea
+      toggle = 2
     else
       current_member.dislikes @idea
     end

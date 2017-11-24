@@ -33,7 +33,12 @@
     </li>
     <li class="waves-effect waves-light">
       <a href="#!">
-        <i class="material-icons">grade</i>
+        <i class="material-icons">pin_drop</i>
+      </a>
+    </li>
+    <li class="waves-effect waves-light">
+      <a href="#!">
+        <i class="material-icons">star_border</i>
       </a>
     </li>
   </ul>
@@ -64,7 +69,7 @@
 
               </span>
             </div>
-           <%= link_to "Dislike", dislike_idea_path(@ideas.first),class: 'vote', method: :put, remote: true,data: {id: @ideas.first.id } %>
+           <%= link_to "Dislike", dislike_idea_path(@ideas.first),class: 'vote ', method: :put, remote: true,data: {id: @ideas.first.id } %>
 
               <%= link_to "Like", like_idea_path(@ideas.first),class: 'vote', method: :put, remote: true,data: {id: @ideas.first.id } %>
             <div class="card-footer col s2">
