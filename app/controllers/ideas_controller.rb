@@ -7,6 +7,15 @@ class IdeasController < ApplicationController
     @ideas = Idea.all
   end
 
+
+  def show_map
+    @idea = Idea.find_by(id:params[:id])
+    
+    respond_to do |format|
+      format.json { head :no_content }
+      format.js     
+  end
+
   def like
     @idea = Idea.find_by(id:params[:id])
     toggle = 0

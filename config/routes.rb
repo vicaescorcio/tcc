@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       member do
           put "like", to: "ideas#like"
           put "dislike", to: "ideas#dislike"
+          get "show_map", to: "ideas#show_map"
       end
   end    
 

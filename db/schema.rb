@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171123153630) do
+ActiveRecord::Schema.define(version: 20171124140110) do
 
   create_table "comments", force: :cascade do |t|
     t.string "body"
@@ -51,6 +51,8 @@ ActiveRecord::Schema.define(version: 20171123153630) do
     t.integer "cached_weighted_score", default: 0
     t.integer "cached_weighted_total", default: 0
     t.float "cached_weighted_average", default: 0.0
+    t.float "latitude"
+    t.float "longitude"
     t.index ["cached_votes_down"], name: "index_ideas_on_cached_votes_down"
     t.index ["cached_votes_score"], name: "index_ideas_on_cached_votes_score"
     t.index ["cached_votes_total"], name: "index_ideas_on_cached_votes_total"

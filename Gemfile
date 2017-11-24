@@ -49,6 +49,8 @@ gem 'jbuilder', '~> 2.5'
 #gem for like function
 gem 'acts_as_votable', '~> 0.11.1'
 
+#gem for geolocalization
+gem 'geocoder'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
