@@ -23,4 +23,3 @@ $(document).on 'ajax:success', 'a.vote', (status,data,xhr)->
        $(this).addClass('active')
      else 
        $(this).addClass('active')
- 

@@ -60,7 +60,7 @@
               <%= image_tag(current_member.image, class:"circle responsive-img") %>
             </div>
             <div class="col s1">
-              <%=  link_to  show_map_idea_path, remote: true, data: {id: @ideas.first.id } do %>
+              <%=  link_to  idea_show_map_path(@ideas.first), remote: true, data: {id: @ideas.first.id } do %>
               <i class="col s4 material-icons">location_on</i>
               <% end %>  
               </div>
@@ -88,6 +88,7 @@
         </div>
       </div>
     </div>
+    <div id="map"></div>
   </div>
 </div>
 <br>

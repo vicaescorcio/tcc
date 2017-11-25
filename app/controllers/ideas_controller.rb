@@ -8,12 +8,12 @@ class IdeasController < ApplicationController
   end
 
 
-  def show_map
-    @idea = Idea.find_by(id:params[:id])
-    
+  def map
+    @idea = Idea.find_by(id:params[:idea_id])
     respond_to do |format|
       format.json { head :no_content }
-      format.js     
+      format.js 
+    end    
   end
 
   def like
@@ -80,12 +80,14 @@ class IdeasController < ApplicationController
   # POST /ideas
   # POST /ideas.json
   def create
-    @idea = current_member.ideas.new(idea_params)
-    sectors_params.each do |k|
-      @idea.sectors << Sector.find_by(id:k)
-   end
+    @idea = current_member.ideas.new(idea_params)    
     respond_to do |format|
+      sectors_params.delete("")
       if @idea.save
+        sectors_params.each do |k|
+          debugger
+          @idea.sectors << Sector.find_by(id:k)
+       end
         format.json { head :no_content }
         format.js
       else
@@ -128,9 +130,9 @@ class IdeasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def idea_params
-      params.require(:idea).permit(:title, :describe, :local,:kind,:sector_ids)
+      params.require(:idea).permit(:title, :describe, :local,:kind,:longitude, :latitude)
     end
     def sectors_params
-      params.require(:idea).permit(:sector_ids)
+      params[:idea][:sector_ids]
     end
 end

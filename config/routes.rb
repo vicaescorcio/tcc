@@ -3,10 +3,10 @@ Rails.application.routes.draw do
   
   
   resources :ideas do
+    get "show_map", to: "ideas#map"
       member do
           put "like", to: "ideas#like"
           put "dislike", to: "ideas#dislike"
-          get "show_map", to: "ideas#show_map"
       end
   end    
 
