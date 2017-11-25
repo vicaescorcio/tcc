@@ -10,43 +10,47 @@
 
   <body >
       <div class="navbar-fixed">
-      <nav class="white">
+        <nav>
           <div class="nav-wrapper">
             <a href="#" class="brand-logo center"><%= image_tag("/imgs/logo.png")%></a>
-            <a href="#" data-activates="slide-out" class=" button-s"> <i class="large material-icons">account_box</i></a> 
-          </div>
-          
+            <ul>
+              <li>
+                <a href="#" data-activates="slide-out" class=" button-s">
+                   <i class="large material-icons">person_pin</i></a>
+              </li>
+            </ul>        
+          </div>   
         </nav>
-        </div>
-        
+      </div>
         <ul id="slide-out" class="side-nav">
             <li><div class="user-view">
               <div class="background">
-                <img src="images/office.jpg">
+                <div class="layer"></div>
+                <%=image_tag('/imgs/desenho.jpg')%>
               </div>
-              <a href="#!user"><img class="circle" src="images/yuna.jpg"></a>
-              <a href="#!name"><span class="white-text name">John Doe</span></a>
-              <a href="#!email"><span class="white-text email">jdandturk@gmail.com</span></a>
+                  <% if current_member.image?%>
+                  <%= image_tag(current_member.image, class:"circle responsive-img") %>
+                  <%end%>
+              <h3 class=" name belleroselight"><%=current_member.name%></h3>
+              <span class=" email belleroselight"><%=current_member.role%></span>
             </div></li>
-            <li><a href="#!"><i class="material-icons">cloud</i>First Link With Icon</a></li>
-            <li><a href="#!">Second Link</a></li>
+            <li><a href="#!"class="belleroselight"><i class="material-icons">star</i>Level Iniciante</a></li>
             <li><div class="divider"></div></li>
-            <li><a class="subheader">Subheader</a></li>
-            <li><a class="waves-effect" href="#!">Third Link With Waves</a></li>
+            <li><a class="subheader belleroselight"> Opções de conta</a></li>
+            <li><%= link_to('Logout', destroy_member_session_path, method: :delete) %> </li>
           </ul>
           
                 
-    <%= yield %>
+      <%= yield %>
     <footer class="page-footer blue">
         <div class="container">
           <div class="row">
             <div class="col l6 s12">
-              <h5 class="white-text">Company Bio</h5>
-              <p class="grey-text text-lighten-4">We are a team of college students working on this project like it's our full time job. Any amount would help support
-                and continue development on this project and is greatly appreciated.</p>
+              <h5 class="white-text">Quem somos nós ?</h5>
+              <p class="grey-text text-lighten-4">O CidadeManda é uma plataforma.</p>
             </div>
             <div class="col l3 s12">
-              <h5 class="white-text">Settings</h5>
+              <h5 class="white-text">Siga-nos nas redes sociais!</h5>
               <ul>
                 <li>
                   <a class="white-text" href="#!">Link 1</a>
@@ -63,7 +67,7 @@
               </ul>
             </div>
             <div class="col l3 s12">
-              <h5 class="white-text">Connect</h5>
+              <h5 class="white-text">Ajude-nos a melhorar, mande sua sugestão:</h5>
               <ul>
                 <li>
                   <a class="white-text" href="#!">Link 1</a>
@@ -83,8 +87,8 @@
         </div>
         <div class="footer-copyright">
           <div class="container">
-            Made by
-            <a class="blue-text text-lighten-3" href="http://materializecss.com">Materialize</a>
+            Feito com carinho por
+            <a class="blue-text text-lighten-3" href="http://materializecss.com">Vica</a>
           </div>
         </div>
       </footer>
@@ -99,7 +103,7 @@
         function initMap() {
           var map = new google.maps.Map(document.getElementById('map'), {
             center: {lat: -34.397, lng: 150.644},
-            zoom: 12
+            zoom: 15
           });
           var infoWindow = new google.maps.InfoWindow({map: map});
   

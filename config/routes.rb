@@ -15,7 +15,7 @@ Rails.application.routes.draw do
   resources :contests
  
  
-  devise_for :members, :controllers => { :omniauth_callbacks => "callbacks", :registrations => 'members/registrations' }
+  devise_for :members, :controllers => { :omniauth_callbacks => "callbacks", :registrations => 'members/registrations', :sessions =>'members/sessions' }
   
   root 'home#index'
   

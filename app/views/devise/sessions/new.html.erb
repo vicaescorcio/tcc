@@ -1,26 +1,64 @@
-<h2>Log in</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
-  </div>
+<div class="section"></div>
+<main>
+  <center>
+    <%=image_tag("/imgs/logo.png",size:"150", class:"responsive-img" )  %>
+    <div class="container">
+      <div class="z-depth-1 grey lighten-4 row" style="display: inline-block; padding: 32px 48px 0px 48px; border: 1px solid #EEE;">
+          
+          <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <%= devise_error_messages! %>
+          <div class='row'>
+            <div class='col s12'>
+            </div>
+          </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
+          <div class='row'>
+            <div class='input-field col s12'>
+                <%= f.email_field :email,class:'validate',id:'email', autofocus: true %>
+                <%= f.label :email %>
+            </div>
+          </div>
 
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
+          <div class='row'>
+            <div class='input-field col s12'>
+                <%= f.password_field :password, autocomplete: "off", class:'validate', id:'password' %>
+                <%= f.label :password %>
+            </div>
+            <% if devise_mapping.rememberable? -%>
+            <label style='float: left;'>  
+                  <%= f.check_box :remember_me %>
+                    <%= f.label :remember_me %>
+                </label>
+           <% end -%>
+          </div>
+           <div class="row">
+              <span class="col s12">Log in pelas redes socias:</span>
+           <div class="">
+                <%- resource_class.omniauth_providers.each do |provider| %>
+                <%=link_to image_tag("/imgs/icons/facebook.png", border: 0,size:40),
+                 omniauth_authorize_path(resource_name, provider), class: 'left'%>
+              <%end%>
+              
+           </div>
+           
+         </div>
+
+          <br />
+          <center>
+            <div class='row'>
+                <%= f.submit "Entrar", class:'' %>
+            </div>
+          </center>
+       <%end%>
+      </div>
     </div>
-  <% end -%>
+    <%= link_to "Não tem conta ? Cadastre-se!", new_registration_path(resource_name), class:"blue-text" %>
+    
+  </center>
 
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
+  <div class="section"></div>
+  <div class="section"></div>
+</main>
 
-<%= render "devise/shared/links" %>
+
