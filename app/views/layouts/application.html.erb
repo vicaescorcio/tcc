@@ -6,6 +6,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link rel="apple-touch-icon" sizes="57x57" href="/imgs/icons/apple-touch-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/imgs/icons/apple-touch-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/imgs/icons/apple-touch-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/imgs/icons/apple-touch-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/imgs/icons/apple-touch-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/imgs/icons/apple-touch-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/imgs/icons/apple-touch-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/imgs/icons/apple-touch-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/imgs/icons/apple-touch-icon-180x180.png">
+    <link rel="icon" type="image/png" href="/imgs/icons/favicon-32x32.png" sizes="32x32">
+    <link rel="icon" type="image/png" href="/imgs/icons/android-chrome-192x192.png" sizes="192x192">
+    <link rel="icon" type="image/png" href="/imgs/icons/favicon-96x96.png" sizes="96x96">
+    <link rel="icon" type="image/png" href="/imgs/icons/favicon-16x16.png" sizes="16x16">
+    <link rel="manifest" href="/imgs/icons/manifest.json">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-TileImage" content="/mstile-144x144.png">
+    <meta name="theme-color" content="#ffffff">    
   </head>
 
   <body >
@@ -27,6 +44,7 @@
               <div class="background">
                 <div class="layer"></div>
                 <%=image_tag('/imgs/desenho.jpg')%>
+                <li><div class="divider"></div></li>
               </div>
                   <% if current_member.image?%>
                   <%= image_tag(current_member.image, class:"circle responsive-img") %>
@@ -35,13 +53,17 @@
               <span class=" email belleroselight"><%=current_member.role%></span>
             </div></li>
             <li><a href="#!"class="belleroselight"><i class="material-icons">star</i>Level Iniciante</a></li>
-            <li><div class="divider"></div></li>
             <li><a class="subheader belleroselight"> Opções de conta</a></li>
             <li><%= link_to('Logout', destroy_member_session_path, method: :delete) %> </li>
           </ul>
           
-                
+
       <%= yield %>
+
+      <div class="col-lg-1 mapContainer">
+          <div id="map"></div>
+      </div>
+     
     <footer class="page-footer blue">
         <div class="container">
           <div class="row">
@@ -92,7 +114,7 @@
           </div>
         </div>
       </footer>
-      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCZmrj6B86WNoXja0Aw5uAqonXaV1_sKqs&callback=initMap"
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBePOL0KsJunNJPylT7J53t64375gmpzpE&callback=initMap"
       async defer></script>
       <script>
         // Note: This example requires that you consent to location sharing when
@@ -103,7 +125,7 @@
         function initMap() {
           var map = new google.maps.Map(document.getElementById('map'), {
             center: {lat: -34.397, lng: 150.644},
-            zoom: 15
+            zoom: 20
           });
           var infoWindow = new google.maps.InfoWindow({map: map});
   
