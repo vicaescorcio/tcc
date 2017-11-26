@@ -27,6 +27,11 @@
         <% end %>
     </li>
     <li class="waves-effect waves-light">
+      <%=  link_to  new_contest_path, remote: true do %>
+        <i class="material-icons">search</i>
+        <% end %>
+    </li>
+    <li class="waves-effect waves-light">
       <a href="#!">
         <i class="material-icons">search</i>
       </a>
@@ -55,7 +60,9 @@
     <div id="ideas">
       <%= render @ideas%>
     </div>
-    
+    <div id="contests">
+      <%= render @contests%>
+    </div>
    
 </div>
 <br>

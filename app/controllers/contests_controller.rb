@@ -7,6 +7,15 @@ class ContestsController < ApplicationController
     @contests = Contest.all
   end
 
+  def map
+    @contest = Contest.find_by(id:params[:contest_id])
+    respond_to do |format|
+      format.json { head :no_content }
+      format.js 
+    end    
+  end
+
+
   # GET /contests/1
   # GET /contests/1.json
   def show
@@ -17,14 +26,7 @@ class ContestsController < ApplicationController
     @contest = Contest.new
   end
 
- def new_contest
-  respond_to do |format|
-    @contest = Contest.new
-    format.html
-    format.js
-  end
 
- end
 
   # GET /contests/1/edit
   def edit
@@ -33,16 +35,21 @@ class ContestsController < ApplicationController
   # POST /contests
   # POST /contests.json
   def create
-    @contest = Contest.new(contest_params)
-
+    @contest = current_member.contests.new(contest_params)    
     respond_to do |format|
+      sectors_params.delete("")
+      debugger
       if @contest.save
-        format.html { redirect_to root_path, notice: 'Contest was successfully created.' }
-        format.json { render :show, status: :created, location: @contest }
+        sectors_params.each do |k|
+          @contest.sectors << Sector.find_by(id:k)
+       end
+        format.json { head :no_content }
+        format.js
       else
-        format.html { render :new }
-        format.json { render json: @contest.errors, status: :unprocessable_entity }
+
+        format.json { render :json => { :error => @contest.errors.full_messages }, :status => 422 }
       end
+      
     end
   end
 
@@ -82,6 +89,10 @@ class ContestsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def contest_params
-      params.require(:contest).permit(:title, :describe)
+      params.require(:contest).permit(:title, :describe,:local,:kind,:longitude, :latitude)
+    end
+
+    def sectors_params
+      params[:contest][:sector_ids]
     end
 end

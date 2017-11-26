@@ -12,8 +12,10 @@ Rails.application.routes.draw do
 
   resources :sectors
  
-  resources :contests
- 
+  resources :contests do
+    get "show_map", to: "contests#map"
+  end
+
  
   devise_for :members, :controllers => { :omniauth_callbacks => "callbacks", :registrations => 'members/registrations', :sessions =>'members/sessions' }
   

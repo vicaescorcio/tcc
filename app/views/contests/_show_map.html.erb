@@ -1,0 +1,8 @@
+<div class="modal-content">
+    <h4>Localização</h4>
+    <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{@contest.latitude},#{@contest.longitude}&markers=#{@contest.latitude},#{@contest.longitude}&zoom=15&size=640x400&key=AIzaSyA4BHW3txEdqfxzdTlPwaHsYRSZbfeIcd8",
+    class: 'img-fluid img-rounded', alt: "#{@contest.title} on the map"%>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+  </div>

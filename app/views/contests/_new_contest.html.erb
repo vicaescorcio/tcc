@@ -1,12 +1,9 @@
-  <!-- Modal Structure -->
-       
-    <div class="modal-content">
-      <h4>Modal Header</h4>
-      <p>A bunch of text</p>
-      <%= form_for(@contest, url: create_contest_path) do |f|  %>
-      <% if @contest.errors.any? %>
+<div class="modal-content">
+    <h4>Novo Concurso</h4>
+    <%= form_with(model: @contest, remote: true, :html => { :role => "form" }) do |form| %>
+    <% if @contest.errors.any? %>
       <div id="error_explanation">
-        <h2><%= pluralize(contest.errors.count, "error") %> prohibited this contest from being saved:</h2>
+        <h2><%= pluralize(@contest.errors.count, "error") %> prohibited this contest from being saved:</h2>
   
         <ul>
         <% @contest.errors.full_messages.each do |message| %>
@@ -17,22 +14,29 @@
     <% end %>
   
     <div class="field">
-      <%= f.label :title %>
-      <%= f.text_field :title, id: :contest_title %>
+      <%= form.label :title %>
+      <%= form.text_field :title, id: :contest_title %>
     </div>
   
     <div class="field">
-      <%= f.label :describe %>
-      <%= f.text_field :describe, id: :contest_describe %>
+      <%= form.label :describe %>
+      <%= form.text_field :describe, id: :contest_describe %>
     </div>
+
+    <div class="field">
+        <%= form.label :local %>
+          <%= form.text_field :local, id: :contest_local %>
+      </div>
+      <div class="field">
+        <%=  collection_check_boxes(:contest, :sector_ids, Sector.all, :id, :name_with_initial)%>
+     </div>
   
     <div class="actions">
-      <%= f.submit %>
+      <%= form.submit %>
     </div>
   <% end %>
-    
-    </div>
-    <div class="modal-footer">
-      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
-    </div>
   
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+  </div>

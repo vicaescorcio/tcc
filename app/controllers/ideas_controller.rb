@@ -67,16 +67,24 @@ class IdeasController < ApplicationController
     end
   end
 
-
+  def create_comment
+    @idea = Idea.find_by(id:params[:idea_id])
+    @comment = @idea.comments.new(comment_params,member_id:current_member.id)
+    respond_to do |format|
+      if @comment.save
+        format.json { head :no_content }
+      else
+        format.json { render :json => { :error => @comment.errors.full_messages }
+      end
+    end
+  end
   # GET /ideas/new
   def new
     @idea = Idea.new
   end
-
   # GET /ideas/1/edit
   def edit
   end
-
   # POST /ideas
   # POST /ideas.json
   def create
@@ -85,7 +93,6 @@ class IdeasController < ApplicationController
       sectors_params.delete("")
       if @idea.save
         sectors_params.each do |k|
-          debugger
           @idea.sectors << Sector.find_by(id:k)
        end
         format.json { head :no_content }
@@ -97,7 +104,6 @@ class IdeasController < ApplicationController
       
     end
   end
-
   # PATCH/PUT /ideas/1
   # PATCH/PUT /ideas/1.json
   def update
@@ -111,7 +117,6 @@ class IdeasController < ApplicationController
       end
     end
   end
-
   # DELETE /ideas/1
   # DELETE /ideas/1.json
   def destroy
@@ -121,18 +126,19 @@ class IdeasController < ApplicationController
       format.json { head :no_content }
     end
   end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_idea
       @idea = Idea.find(params[:id])
     end
-
     # Never trust parameters from the scary internet, only allow the white list through.
     def idea_params
       params.require(:idea).permit(:title, :describe, :local,:kind,:longitude, :latitude)
     end
     def sectors_params
       params[:idea][:sector_ids]
+    end
+    def comment_params
+      params.require(:comment).permit(:body)
     end
 end

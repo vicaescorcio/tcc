@@ -39,7 +39,8 @@
           </div>   
         </nav>
       </div>
-        <ul id="slide-out" class="side-nav">
+      <!--  
+      <ul id="slide-out" class="side-nav">
             <li><div class="user-view">
               <div class="background">
                 <div class="layer"></div>
@@ -56,7 +57,23 @@
             <li><a class="subheader belleroselight"> Opções de conta</a></li>
             <li><%= link_to('Logout', destroy_member_session_path, method: :delete) %> </li>
           </ul>
-          
+        -->
+          <ul id="slide-out" class="side-nav">
+            <li><div class="user-view">
+              <div class="background">
+                <%=image_tag('/imgs/desenho.jpg')%>
+              </div>
+              <% if current_member.image?%>
+              <%= image_tag(current_member.image, class:"circle responsive-img") %>
+              <%end%>
+              <a href="#!name"><span class="white-text name"><%=current_member.name%></span></a>
+              <a href="#!email"><span class="white-text email"><%=current_member.email%></span></a>
+            </div></li>
+            <li><a href="#!"><i class="material-icons">star</i>Level Iniciante</a></li>
+            <li><div class="divider"></div></li>
+            <li><a class="subheader">Opções de Conta</a></li>
+            <li><%= link_to('Logout', destroy_member_session_path, method: :delete) %></li>
+          </ul>
 
       <%= yield %>
 
