@@ -4,5 +4,6 @@ class HomeController < ApplicationController
   def index
     @ideas = Idea.all
     @contests = Contest.all
+    @comment = Comment.new
   end
 end

@@ -57,27 +57,6 @@ class IdeasController < ApplicationController
   # GET /ideas/1.json
   def show
   end
-
-  def new_idea
-    respond_to do |format|
-      @idea = Idea.new
-      @sectors = Sector.all
-      format.html
-      format.js
-    end
-  end
-
-  def create_comment
-    @idea = Idea.find_by(id:params[:idea_id])
-    @comment = @idea.comments.new(comment_params,member_id:current_member.id)
-    respond_to do |format|
-      if @comment.save
-        format.json { head :no_content }
-      else
-        format.json { render :json => { :error => @comment.errors.full_messages }
-      end
-    end
-  end
   # GET /ideas/new
   def new
     @idea = Idea.new

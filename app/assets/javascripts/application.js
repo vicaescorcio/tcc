@@ -25,7 +25,7 @@ $(document).ready(function(){
     $(".button-s").sideNav();
     $('.carousel.carousel-slider').carousel({fullWidth: true,indicators:true});
     $('select').material_select();
-    
+    $('.collapsible').collapsible();
   });
 
  

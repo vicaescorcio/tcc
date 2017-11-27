@@ -1,38 +1,80 @@
 <div class="row">
-    <div class="col s12 m12">
-      <div class="card-panel  z-depth-1">
-        <div class="row valign-wrapper">
-          <div class="col s1">
-            <% if current_member.image?%>
+  <div class="col s12 m12">
+    <div class="card-panel  z-depth-1">
+      <div class="row valign-wrapper">
+        <div class="col s1">
+          <% if current_member.image?%>
             <%= image_tag(current_member.image, class:"circle responsive-img") %>
-            <%end%>
-          </div>
-          <div class="col s1">
-            <%=  link_to  idea_show_map_path(idea), remote: true, data: {id: idea.id } do %>
-            <i class="col s4 material-icons">location_on</i>
-            <% end %>  
-            </div>
-          <div class="col s8">
-            <span class="black-text">
-              <%=idea.describe%>
-
-            </span>
-          </div>
-         <%= link_to "Dislike", dislike_idea_path(idea),class: 'vote ', method: :put, remote: true,data: {id: idea.id } %>
-
-            <%= link_to "Like", like_idea_path(idea),class: 'vote', method: :put, remote: true,data: {id: idea.id } %>
-          <div class="card-footer col s2">
-            <a href="#">
-              <i class="col s4 material-icons">favorite_border</i>
-            </a>
-            <a href="#">
-              <i class="col s4 material-icons">thumb_down</i>
-            </a>
-            <a href="#">
-              <i class="col s4 material-icons">chat_bubble_outline</i>
-            </a>            
-          </div>
+              <%end%>
         </div>
+        <div class="col s1">
+          <%=  link_to  idea_show_map_path(idea), remote: true, data: {id: idea.id } do %>
+            <i class="col s4 material-icons">location_on</i>
+            <% end %>
+        </div>
+        <div class="col s8">
+          <span class="black-text">
+            <%=idea.describe%>
+
+          </span>
+        </div>
+        <%= link_to "Dislike", dislike_idea_path(idea),class: 'vote ', method: :put, remote: true,data: {id: idea.id } %>
+
+          <%= link_to "Like", like_idea_path(idea),class: 'vote', method: :put, remote: true,data: {id: idea.id } %>
+            <div class="card-footer col s2">
+              <a href="#">
+                <i class="col s4 material-icons">favorite_border</i>
+              </a>
+              <a href="#">
+                <i class="col s4 material-icons">thumb_down</i>
+              </a>
+              <a href="#">
+                <i class="col s4 material-icons">chat_bubble_outline</i>
+              </a>
+            </div>
       </div>
     </div>
+
+    <ul class="collapsible" data-collapsible="accordion">
+        <li>
+          <div class="collapsible-header">
+            <i class="material-icons">comment</i>Comentários</div>
+          <div class="collapsible-body">
+            <% if idea.comments.any?%> 
+            <span><%=idea.comments.first.body%></span>
+            <% else%>
+            <span>Nenhum comentário para essa ideia.</span>
+            <%end%>     
+          </div>
+        </li>
+      </ul>
+
   </div>
+  <%= form_with(model: @comment, remote: true, :html => { :role => "form" }) do |form| %>
+    <% if @comment.errors.any? %>
+      <div id="error_explanation">
+        <h2>
+          <%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+        <ul>
+          <% @comment.errors.full_messages.each do |message| %>
+            <li>
+              <%= message %>
+            </li>
+            <% end %>
+        </ul>
+      </div>
+      <% end %>
+        <div class="field">
+          <%= form.label :body %>
+            <%= form.text_field :body, id: :comment_body %>
+        </div>
+        <div class="field">
+          <%= form.hidden_field :idea_id, value: idea.id %>
+        </div>
+        <div class="actions">
+          <%= form.submit %>
+        </div>
+        <% end %>
+
+</div>
