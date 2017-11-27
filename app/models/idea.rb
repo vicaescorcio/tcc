@@ -2,7 +2,7 @@ class Idea < ApplicationRecord
     
     belongs_to :member, -> { where(role: 0) }
     has_and_belongs_to_many :sectors
-    has_many :comments
+    #has_many :comments
 
     acts_as_votable
     geocoded_by :local

@@ -1,4 +1,4 @@
-class CreateComments < ActiveRecord::Migration[5.1]
+class CreateCommentsTable < ActiveRecord::Migration[5.1]
   def change
     create_table :comments do |t|
       t.string :body
@@ -6,3 +6,6 @@ class CreateComments < ActiveRecord::Migration[5.1]
     end
   end
 end
+
+
+
