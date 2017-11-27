@@ -5,6 +5,7 @@ class Idea < ApplicationRecord
     has_many :comments
 
     acts_as_votable
+    acts_as_commentable
     geocoded_by :local
     reverse_geocoded_by :latitude, :longitude, :address => :local
     after_validation :geocode, if: ->(obj){ obj.local.present? and obj.local_changed? }

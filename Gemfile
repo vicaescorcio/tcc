@@ -51,8 +51,9 @@ gem 'acts_as_votable', '~> 0.11.1'
 
 #gem for geolocalization
 gem 'geocoder'
-# Use Capistrano for deployment
+
 # gem 'capistrano-rails', group: :development
+# Use Capistrano for deployment
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
