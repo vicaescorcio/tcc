@@ -14,8 +14,10 @@ Rails.application.routes.draw do
  
   resources :contests do
     get "show_map", to: "contests#map"
+    #put "new_contest_idea", to: "contests#new"
   end
-
+ 
+  get "filter", to: "home#filtering"
  
   devise_for :members, :controllers => { :omniauth_callbacks => "callbacks", :registrations => 'members/registrations', :sessions =>'members/sessions' }
   

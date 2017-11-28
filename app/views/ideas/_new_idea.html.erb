@@ -1,36 +1,80 @@
 <div class="modal-content">
-  <h4>Nova Ideia</h4>
-  <%= form_for(@idea, remote: true, :html => { :role => "form" }) do |f|  %>
-  <div id="error_explanation" class="bg-danger text-danger">
-      <ul>
-        
-      </ul>
-    </div>
-      <div class="field">
-        <%= f.label :kind %>
-        <%= f.select :kind, options_for_select(Idea.kinds.map {|type,value| [type,type]},selected: Idea.kinds[:proposal]) %>
-        
-      </div>
-      <div class="field">
-        <%= f.label :title %>
-          <%= f.text_field :title, id: :idea_title %>
-      </div>
-      <div class="field">
-        <%= f.label :describe %>
-          <%= f.text_area :describe, size: "60x12", id: :idea_describe %>
-      </div>
-      <div class="field">
-        <%= f.label :local %>
-          <%= f.text_field :local, id: :idea_local %>
-      </div>
-      <div class="field">
-        <%=  collection_check_boxes(:idea, :sector_ids, Sector.all, :id, :name_with_initial)%>
-     </div>
-          <div class="actions">
-            <%= f.submit %>
+  <%if @contest%>
+    <h4>
+      <%= @contest.title %>
+    </h4>
+    <%else%>
+      <h4>Nova Ideia</h4>
+      <% end %>
+
+        <%= form_for(@idea, remote: true, :html => { :role => "form" }) do |f|  %>
+          <div id="error_explanation" class="bg-danger text-danger">
+            <ul>
+            </ul>
           </div>
-          <% end %>
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">mode_edit</i>
+              <%= f.label :kind, "" %>
+                <%= f.select :kind, options_for_select(Idea.kinds.map {|type,value| [type,type]},selected: Idea.kinds[:proposal]) %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">mode_edit</i>
+              <%= f.label :title, "Título" %>
+                <%= f.text_field :title, id: :idea_title %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">mode_edit</i>
+              <%= f.label :describe, "Descrição" %>
+                <%= f.text_area :describe, size: "60x12", id: :idea_describe, class:'materialize-textarea' %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <i class="material-icons prefix">mode_edit</i>
+              <%= f.label :local, "Local" %>
+                <%= f.text_field :local, id: :idea_local %>
+            </div>
+          </div>
+          <a id="get_location" class="waves-effect waves-light btn blue">Sua localização</a>
+          <div class="row">
+            <div class="input-field col s12">
+              <%= f.hidden_field :latitude %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <%= f.hidden_field :longitude %>
+            </div>
+          </div>
+          <% if @contest %>
+            <div class="row">
+              <div class="input-field col s12">
+                <%= hidden_field_tag :contest_id, @contest.id %>
+              </div>
+            </div>
+            <% end %>
+
+              <div class="row">
+                <span>Setores:</span>
+                <div class="input-field col s12">
+                  <%=  collection_check_boxes(:idea, :sector_ids, Sector.all, :id, :name_with_initial)%>
+                </div>
+              </div>
+
+              <div class="actions right">
+                <%= f.submit "Salvar", class:"center waves-effect waves-orange btn-flat orange" %>
+              </div>
+              <% end %>
+
 </div>
 <div class="modal-footer">
-  <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
+
+  <!--<a id="submit-idea" class="waves-effect waves-green orange btn-flat ">Salvar</a>-->
+  <a href="#!" class=" modal-close waves-effect waves-green btn-flat ">Cancelar</a>
+
 </div>

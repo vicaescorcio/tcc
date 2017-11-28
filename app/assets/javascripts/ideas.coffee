@@ -4,10 +4,12 @@
 $(document).on "ajax:error", "form", (evt, xhr, status, error) ->
    
    detail = evt.detail
+   
   # errors = JSON.parse detail[2].responseText.error
    json = JSON.parse detail[2].responseText;
    errors = json.error
    console.log(errors)
+   $('#error_explanation').show();
    $('#error_explanation').append errors
  
 

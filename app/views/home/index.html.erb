@@ -1,19 +1,8 @@
 <div class="section no-pad-bot" id="index-banner">
   <div class="container">
-    <div class="carousel carousel-slider">
-      <a class="carousel-item" href="#one!">
-        <img src="http://tvcultura.com.br/upload/tvcultura/programas/programa-imagem-som.jpg">
-      </a>
-      <a class="carousel-item" href="#two!">
-        <img src="http://tvcultura.com.br/upload/tvcultura/programas/programa-imagem-som.jpg">
-      </a>
-      <a class="carousel-item" href="#three!">
-        <img src="http://tvcultura.com.br/upload/tvcultura/programas/programa-imagem-som.jpg">
-      </a>
-      <a class="carousel-item" href="#four!">
-        <img src="http://tvcultura.com.br/upload/tvcultura/programas/programa-imagem-som.jpg">
-      </a>
-    </div>
+      <div class="col-lg-1 mapContainer">
+          <div id="map"></div>
+      </div>
   </div>
 </div>
 <div class="fixed-action-btn toolbar">
@@ -32,11 +21,11 @@
         <% end %>
     </li>
     <li class="waves-effect waves-light">
-      <a href="#!">
-        <i class="material-icons">search</i>
-      </a>
-    </li>
-    <li class="waves-effect waves-light">
+        <%=  link_to  contests_path do %>
+          <i class="material-icons">search</i>
+          <% end %>
+      </li>
+      <li class="waves-effect waves-light">
       <a href="#!">
         <i class="material-icons">pin_drop</i>
       </a>
@@ -50,16 +39,17 @@
 </div>
 <div class="container">
   <div class="section">
-    <div id="modal1" class="modal modal-fixed-footer">
-    </div>
-    <div id="modal2" class="modal modal-fixed-footer">
-    </div>
-    <div id="modal3" class="modal modal-fixed-footer">
-    </div>
+      <div id="modal1" class="modal modal-fixed-footer">
+        </div>
+        <div id="modal2" class="modal modal-fixed-footer">
+        </div>
+        <div id="modal3" class="modal modal-fixed-footer">
+        </div>
     <h3 class="center">O que a Cidade Manda ?</h3>
     <div id="ideas">
-      <%= render @ideas%>
-    </div>
+        <%= render @ideas%>
+      </div>   
+      <h3 class="center">O que querem saber Cidade ?</h3> 
     <div id="contests">
       <%= render @contests%>
     </div>

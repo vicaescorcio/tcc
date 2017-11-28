@@ -1,2 +1,19 @@
 $("#modal1").modal('close');
-$('#ideas').append('<%= j render (@idea) %>')
+$('#ideas').append('<%= j render (@idea) %>')  
+
+
+var myLatLng = {lat: <%= @idea.latitude %>, lng: <%= @idea.longitude%>};
+    
+            var map = new google.maps.Map(document.getElementById('map'), {
+              zoom: 4,
+              center: myLatLng
+            });
+    
+            var marker = new google.maps.Marker({
+              position: myLatLng,
+              map: map,
+              title: '<%= @idea.title %>'
+            });
+            
+
+

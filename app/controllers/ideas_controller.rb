@@ -1,6 +1,6 @@
 class IdeasController < ApplicationController
   before_action :set_idea, only: [:show, :edit, :update, :destroy]
-
+  layout 'layouts/application'
   # GET /ideas
   # GET /ideas.json
   def index
@@ -56,10 +56,13 @@ class IdeasController < ApplicationController
   # GET /ideas/1
   # GET /ideas/1.json
   def show
+    @comment = Comment.new
   end
   # GET /ideas/new
   def new
     @idea = Idea.new
+    @contest = nil
+    @contest = Contest.find_by(id:params[:format]) unless params[:format].nil?
   end
   # GET /ideas/1/edit
   def edit
@@ -67,15 +70,17 @@ class IdeasController < ApplicationController
   # POST /ideas
   # POST /ideas.json
   def create
-    @idea = current_member.ideas.new(idea_params)    
+    @idea = current_member.ideas.new(idea_params)   
     respond_to do |format|
+      @comment= Comment.new
       sectors_params.delete("")
       if @idea.save
+        @idea.update(contest_id:params[:contest_id]) unless params[:contest_id].nil? 
         sectors_params.each do |k|
           @idea.sectors << Sector.find_by(id:k)
        end
         format.json { head :no_content }
-        format.js
+        format.js       
       else
 
         format.json { render :json => { :error => @idea.errors.full_messages }, :status => 422 }

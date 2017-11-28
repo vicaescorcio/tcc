@@ -51,6 +51,9 @@ gem 'acts_as_votable', '~> 0.11.1'
 
 #gem for geolocalization
 gem 'geocoder'
+
+#gem to share instance variables on js
+gem 'gon'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

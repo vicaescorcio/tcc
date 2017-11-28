@@ -16,39 +16,39 @@
 
           <div class='row'>
               <div class='input-field col s12'>
-                  <%= f.label :name %>
+                  <%= f.label :name, "Nome" %>
                   <%= f.text_field :name, autofocus: true %>
               </div>
             </div>
           <div class='row'>
             <div class='input-field col s12'>
                 <%= f.email_field :email,class:'validate',id:'email', autofocus: true %>
-                <%= f.label :email %>
+                <%= f.label :email, "Email" %>
             </div>
           </div>
           <div class='row'>
             <div class='input-field col s12'>     
-              <%= f.label :birthday %>
+              <%= f.label :birthday, "Data de Nascimento" %>
               <%= f.text_field :birthday, autofocus: true %>
             </div>
          </div>
          <div class='row'>
             <div class='input-field col s12'>
-                <%= f.label :role %>
-                <%= f.text_field :role, autofocus: true %>
+                <%= f.label :role, "Papel" %>
+                <%= f.select :role, options_for_select(Member.roles.map {|type,value| [type,type]},selected: Member.roles[:citzen]) %>
             </div>
          </div>
 
          <div class='row'>
             <div class='input-field col s12'>
-                <%= f.label :district %>
+                <%= f.label :district, "Bairro" %>
                 <%= f.text_field :district, autofocus: true %>
             </div>
          </div>
 
          <div class='row'>
             <div class='input-field col s12'>
-                <%= f.label :password %>
+                <%= f.label :password, "Senha" %>
                
                     <%= f.password_field :password, autocomplete: "off" %>
             </div>
@@ -64,13 +64,13 @@
 
           <div class='row'>
             <div class='input-field col s12'>
-                <%= f.label :password_confirmation %>
+                <%= f.label :password_confirmation," Confirmar Senha" %>
                 <%= f.password_field :password_confirmation, autocomplete: "off" %>
             </div>
             <% if devise_mapping.rememberable? -%>
             <label style='float: left;'>  
                   <%= f.check_box :remember_me %>
-                    <%= f.label :remember_me %>
+                    <%= f.label :remember_me, "Lembrar-me" %>
                 </label>
            <% end -%>
           </div>

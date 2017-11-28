@@ -1,29 +1,9 @@
-<p id="notice"><%= notice %></p>
+<div class="section no-pad-bot" id="index-banner">
+  <div class="container">
+    <div id="contests">
+      <%= render @contests%>
+    </div>
+  </div>
+</div>
 
-<h1>Contests</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Title</th>
-      <th>Describe</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @contests.each do |contest| %>
-      <tr>
-        <td><%= contest.title %></td>
-        <td><%= contest.describe %></td>
-        <td><%= link_to 'Show', contest %></td>
-        <td><%= link_to 'Edit', edit_contest_path(contest) %></td>
-        <td><%= link_to 'Destroy', contest, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Contest', new_contest_path %>
+  <%= render '/contests/map_js', :contest => @contests.first %>

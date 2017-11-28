@@ -1,6 +1,7 @@
 class ContestsController < ApplicationController
   before_action :set_contest, only: [:show, :edit, :update, :destroy]
   before_action :provider?, only:[:create]
+  layout 'layouts/application'
   # GET /contests
   # GET /contests.json
   def index
@@ -19,6 +20,8 @@ class ContestsController < ApplicationController
   # GET /contests/1
   # GET /contests/1.json
   def show
+    @ideas = @contest.ideas
+    @comment = Comment.new
   end
 
   # GET /contests/new

@@ -1,42 +1,52 @@
 <div class="modal-content">
-    <h4>Novo Concurso</h4>
-    <%= form_with(model: @contest, remote: true, :html => { :role => "form" }) do |form| %>
-    <% if @contest.errors.any? %>
+  <h4>Novo Concurso</h4>
+  <%= form_with(model: @contest, remote: true, :html => { :role => "form" }) do |form| %>
       <div id="error_explanation">
-        <h2><%= pluralize(@contest.errors.count, "error") %> prohibited this contest from being saved:</h2>
-  
-        <ul>
-        <% @contest.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
+       <ul>
+      </ul>
       </div>
-    <% end %>
-  
-    <div class="field">
-      <%= form.label :title %>
-      <%= form.text_field :title, id: :contest_title %>
-    </div>
-  
-    <div class="field">
-      <%= form.label :describe %>
-      <%= form.text_field :describe, id: :contest_describe %>
-    </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <%= form.label :title, "Título" %>
+              <%= form.text_field :title, id: :contest_title %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <%= form.label :describe, "Descrição" %>
+              <%= form.text_field :describe, id: :contest_describe %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <%= form.label :local, "Local" %>
+              <%= form.text_field :local, id: :contest_local %>
+          </div>
+        </div>
+        <a id="get_location" class="waves-effect waves-light btn blue">Sua localização</a>
+        <div class="row">
+          <div class="input-field col s12">
+            <%= form.hidden_field :latitude %>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <%= form.hidden_field :latitude %>
+          </div>
+        </div>
+        <div class="row">
+          <span>Setores:</span>
+          <div class="input-field col s12">
+            <%=  collection_check_boxes(:contest, :sector_ids, Sector.all, :id, :name_with_initial)%>
+          </div>
+        </div>
 
-    <div class="field">
-        <%= form.label :local %>
-          <%= form.text_field :local, id: :contest_local %>
-      </div>
-      <div class="field">
-        <%=  collection_check_boxes(:contest, :sector_ids, Sector.all, :id, :name_with_initial)%>
-     </div>
-  
-    <div class="actions">
-      <%= form.submit %>
-    </div>
-  <% end %>
-  
-  </div>
-  <div class="modal-footer">
-    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">Agree</a>
-  </div>
+        <div class="actions right">
+          <%= form.submit "Salvar", class:"center waves-effect waves-orange btn-flat blue" %>
+        </div>
+        <% end %>
+
+</div>
+<div class="modal-footer">
+  <a href="#!" class=" modal-close waves-effect waves-green btn-flat ">Cancelar</a>
+</div>
