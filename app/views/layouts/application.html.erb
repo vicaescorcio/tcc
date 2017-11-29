@@ -8,8 +8,21 @@
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
         <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
-        <%= include_gon %>
-      </head>
+          <%= include_gon %>
+            <link rel="apple-touch-icon" sizes="180x180" href="/imgs/icons/apple-touch-icon.png">
+            <link rel="icon" type="image/png" sizes="32x32" href="/imgs/icons/favicon-32x32.png">
+            <link rel="icon" type="image/png" sizes="192x192" href="/imgs/icons/android-chrome-192x192.png">
+            <link rel="icon" type="image/png" sizes="16x16" href="/imgs/icons/favicon-16x16.png">
+            <link rel="mask-icon" href="/imgs/icons/safari-pinned-tab.svg" color="#5bbad5">
+            <link rel="shortcut icon" href="/imgs/icons/favicon.ico">
+            <meta name="apple-mobile-web-app-title" content="CidadeManda">
+            <meta name="application-name" content="CidadeManda">
+            <meta name="msapplication-config" content="/imgs/icons/browserconfig.xml">
+            <meta name="theme-color" content="#ffcb44">
+            <link rel="manifest" href="/manifest.json" />
+            <meta name="apple-mobile-web-app-capable" content="yes">
+</head>
+
 <body>
   <div class="navbar-fixed">
     <nav>
@@ -63,134 +76,134 @@
     </li>
   </ul>
   <%= link_to "Dislike", filter_path(sector_ids:[1,2,3]),class: 'vote ', remote: true %>
-  <%= yield %>
+    <%= yield %>
 
-    <footer class="page-footer blue">
-      <div class="container">
-        <div class="row">
-          <div class="col l6 s12">
-            <h5 class="white-text">Quem somos nós ?</h5>
-            <p class="grey-text text-lighten-4">O CidadeManda é uma plataforma.</p>
-          </div>
-          <div class="col l3 s12">
-            <h5 class="white-text">Siga-nos nas redes sociais!</h5>
-            <ul>
-              <li>
-                <a class="white-text" href="#!">Link 1</a>
-              </li>
-              <li>
-                <a class="white-text" href="#!">Link 2</a>
-              </li>
-              <li>
-                <a class="white-text" href="#!">Link 3</a>
-              </li>
-              <li>
-                <a class="white-text" href="#!">Link 4</a>
-              </li>
-            </ul>
-          </div>
-          <div class="col l3 s12">
-            <h5 class="white-text">Ajude-nos a melhorar, mande sua sugestão:</h5>
-            <ul>
-              <li>
-                <a class="white-text" href="#!">Link 1</a>
-              </li>
-              <li>
-                <a class="white-text" href="#!">Link 2</a>
-              </li>
-              <li>
-                <a class="white-text" href="#!">Link 3</a>
-              </li>
-              <li>
-                <a class="white-text" href="#!">Link 4</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </div>
-      <div class="footer-copyright">
+      <footer class="page-footer blue">
         <div class="container">
-          Feito com carinho por
-          <a class="blue-text text-lighten-3" href="http://materializecss.com">Vica</a>
+          <div class="row">
+            <div class="col l6 s12">
+              <h5 class="white-text">Quem somos nós ?</h5>
+              <p class="grey-text text-lighten-4">O CidadeManda é uma plataforma.</p>
+            </div>
+            <div class="col l3 s12">
+              <h5 class="white-text">Siga-nos nas redes sociais!</h5>
+              <ul>
+                <li>
+                  <a class="white-text" href="#!">Link 1</a>
+                </li>
+                <li>
+                  <a class="white-text" href="#!">Link 2</a>
+                </li>
+                <li>
+                  <a class="white-text" href="#!">Link 3</a>
+                </li>
+                <li>
+                  <a class="white-text" href="#!">Link 4</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col l3 s12">
+              <h5 class="white-text">Ajude-nos a melhorar, mande sua sugestão:</h5>
+              <ul>
+                <li>
+                  <a class="white-text" href="#!">Link 1</a>
+                </li>
+                <li>
+                  <a class="white-text" href="#!">Link 2</a>
+                </li>
+                <li>
+                  <a class="white-text" href="#!">Link 3</a>
+                </li>
+                <li>
+                  <a class="white-text" href="#!">Link 4</a>
+                </li>
+              </ul>
+            </div>
+          </div>
         </div>
-      </div>
-    </footer>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBePOL0KsJunNJPylT7J53t64375gmpzpE&callback=initMap" async
-      defer></script>
-    <script>
-      // Note: This example requires that you consent to location sharing when
-      // prompted by your browser. If you see the error "The Geolocation service
-      // failed.", it means you probably did not give permission for the browser to
-      // locate you.
+        <div class="footer-copyright">
+          <div class="container">
+            Feito com carinho por
+            <a class="blue-text text-lighten-3" href="http://materializecss.com">Vica</a>
+          </div>
+        </div>
+      </footer>
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBePOL0KsJunNJPylT7J53t64375gmpzpE&callback=initMap" async
+        defer></script>
+      <script>
+        // Note: This example requires that you consent to location sharing when
+        // prompted by your browser. If you see the error "The Geolocation service
+        // failed.", it means you probably did not give permission for the browser to
+        // locate you.
 
-      function initMap() {
+        function initMap() {
 
-        var map = new google.maps.Map(document.getElementById('map'), {
-          center: { lat: -34.397, lng: 150.644 },
-          zoom: 20
-        });
-        var infoWindow = new google.maps.InfoWindow({ map: map });
-
-        // Try HTML5 geolocation.
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(function (position) {
-            var pos = {
-              lat: position.coords.latitude,
-              lng: position.coords.longitude
-            };
-
-            infoWindow.setPosition(pos);
-            infoWindow.setContent('Location found.');
-            map.setCenter(pos);
-            markMap(gon.ideas,"orange", map, infoWindow);
-            markMap(gon.contests,"blue", map, infoWindow);
-          }, function () {
-            handleLocationError(true, infoWindow, map.getCenter());
+          var map = new google.maps.Map(document.getElementById('map'), {
+            center: { lat: -34.397, lng: 150.644 },
+            zoom: 20
           });
-        } else {
-          // Browser doesn't support Geolocation
-          handleLocationError(false, infoWindow, map.getCenter());
+          var infoWindow = new google.maps.InfoWindow({ map: map });
+
+          // Try HTML5 geolocation.
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function (position) {
+              var pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+              };
+
+              infoWindow.setPosition(pos);
+              infoWindow.setContent('Location found.');
+              map.setCenter(pos);
+              markMap(gon.ideas, "orange", map, infoWindow);
+              markMap(gon.contests, "blue", map, infoWindow);
+            }, function () {
+              handleLocationError(true, infoWindow, map.getCenter());
+            });
+          } else {
+            // Browser doesn't support Geolocation
+            handleLocationError(false, infoWindow, map.getCenter());
+          }
         }
-      }
 
-      function handleLocationError(browserHasGeolocation, infoWindow, pos) {
-        infoWindow.setPosition(pos);
-        infoWindow.setContent(browserHasGeolocation ?
-          'Error: The Geolocation service failed.' :
-          'Error: Your browser doesn\'t support geolocation.');
-      }
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+          infoWindow.setPosition(pos);
+          infoWindow.setContent(browserHasGeolocation ?
+            'Error: The Geolocation service failed.' :
+            'Error: Your browser doesn\'t support geolocation.');
+        }
 
-      function markMap(locals, color, map, infowindow){
-        var color = color
-        var locations = locals;
-      
+        function markMap(locals, color, map, infowindow) {
+          var color = color
+          var locations = locals;
+
           var map = map
-      
+
           var infowindow = infowindow;
-      
+
           var marker, i;
-      
-          for (i = 0; i < locations.length; i++) {  
+
+          for (i = 0; i < locations.length; i++) {
             marker = new google.maps.Marker({
               position: new google.maps.LatLng(locations[i][1], locations[i][2]),
               map: map,
               icon: {
-                    path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
-                    strokeColor: color,
-                    scale: 3
+                path: google.maps.SymbolPath.BACKWARD_CLOSED_ARROW,
+                strokeColor: color,
+                scale: 3
               }
             });
-      
-            google.maps.event.addListener(marker, 'click', (function(marker, i) {
-              return function() {
+
+            google.maps.event.addListener(marker, 'click', (function (marker, i) {
+              return function () {
                 infowindow.setContent(locations[i][0]);
                 infowindow.open(map, marker);
               }
             })(marker, i));
           }
-    
-      }
-    </script>
+
+        }
+      </script>
 
 </body>
 

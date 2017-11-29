@@ -36,7 +36,7 @@
         </div>
         <div class="row">
           <span>Setores:</span>
-          <div class="input-field col s12">
+          <div class="field col s12">
             <%=  collection_check_boxes(:contest, :sector_ids, Sector.all, :id, :name_with_initial)%>
           </div>
         </div>

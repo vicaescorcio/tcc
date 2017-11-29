@@ -40,7 +40,18 @@
                 <%= f.text_field :local, id: :idea_local %>
             </div>
           </div>
+          <div class="row">
           <a id="get_location" class="waves-effect waves-light btn blue">Sua localização</a>
+        </div>
+         
+
+          <div class="row">
+              <span>Setores:</span>
+              <div class="field col s12">
+                <%=  collection_check_boxes(:idea, :sector_ids, Sector.all, :id, :name_with_initial)%>
+              </div>
+            </div>
+         
           <div class="row">
             <div class="input-field col s12">
               <%= f.hidden_field :latitude %>
@@ -58,13 +69,6 @@
               </div>
             </div>
             <% end %>
-
-              <div class="row">
-                <span>Setores:</span>
-                <div class="input-field col s12">
-                  <%=  collection_check_boxes(:idea, :sector_ids, Sector.all, :id, :name_with_initial)%>
-                </div>
-              </div>
 
               <div class="actions right">
                 <%= f.submit "Salvar", class:"center waves-effect waves-orange btn-flat orange" %>

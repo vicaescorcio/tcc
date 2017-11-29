@@ -26,7 +26,8 @@ $(document).ready(function(){
     $('.carousel.carousel-slider').carousel({fullWidth: true,indicators:true});
     $('select').material_select();
     $('.collapsible').collapsible();
-  
+    $('select').material_select();
 
 });
  
+//= require serviceworker-companion

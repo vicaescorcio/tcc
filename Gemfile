@@ -54,6 +54,8 @@ gem 'geocoder'
 
 #gem to share instance variables on js
 gem 'gon'
+#gem para instalar service-worker
+gem 'serviceworker-rails'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

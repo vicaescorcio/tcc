@@ -41,7 +41,6 @@ class ContestsController < ApplicationController
     @contest = current_member.contests.new(contest_params)    
     respond_to do |format|
       sectors_params.delete("")
-      debugger
       if @contest.save
         sectors_params.each do |k|
           @contest.sectors << Sector.find_by(id:k)
