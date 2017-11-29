@@ -1,1 +1,17 @@
-<span><%=comment.body%></span>
+
+
+<li>
+        <div class="row">
+          <div class="col s4">
+            <% if comment.member.image? %>
+            <%= image_tag(comment.member.image, class:"circle responsive-img") %>
+            <% end %>
+            <span> <%= comment.member.name %></span>
+          </div>
+          <div class="col s8">
+              <span>
+                <%=comment.body%>
+              </span>
+          </div>
+        </div>
+      </li>

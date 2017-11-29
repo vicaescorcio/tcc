@@ -13,7 +13,9 @@
  *= require_tree .
  *= require_self
  *= require custom_fonts.scss
+ *= require social-share-button
  */
+ 
  @import "materialize";
  @import "material_icons";
 /*Geral*/
@@ -166,4 +168,12 @@ nav .brand-logo {
 .mapContainer{
     height:500px;
     width:100%
+}
+
+
+
+/*card idea*/
+
+.describe{
+    text-align: justify;
 }

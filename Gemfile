@@ -56,6 +56,10 @@ gem 'geocoder'
 gem 'gon'
 #gem para instalar service-worker
 gem 'serviceworker-rails'
+
+#gem para social share
+gem 'social-share-button'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

@@ -17,13 +17,14 @@
 
 //= require turbolinks
 //= require materialize-sprockets
+//= require social-share-button
 //= require_tree .
+
 
 $(document).ready(function(){
     // the "href" attribute of the modal trigger must specify the modal ID that wants to be triggered
     $('.modal').modal();
     $(".button-s").sideNav();
-    $('.carousel.carousel-slider').carousel({fullWidth: true,indicators:true});
     $('select').material_select();
     $('.collapsible').collapsible();
     $('select').material_select();

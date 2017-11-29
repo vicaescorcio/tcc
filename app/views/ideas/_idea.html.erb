@@ -3,71 +3,103 @@
     <div class="card-panel  z-depth-1">
       <div class="row valign-wrapper">
         <div class="col s1">
-          <% if current_member.image?%>
-            <%= image_tag(current_member.image, class:"circle responsive-img") %>
+          <% if idea.member.image?%>
+            <%= image_tag(idea.member.image, class:"circle responsive-img") %>
               <%end%>
         </div>
-        <div class="col s1">
+        <div class="col s2">
           <%=  link_to  idea_show_map_path(idea), remote: true, data: {id: idea.id } do %>
             <i class="col s4 material-icons">location_on</i>
             <% end %>
-        </div>
-        <div class="col s8">
-          <span class="black-text">
-            <%=idea.describe%>
 
-          </span>
         </div>
-        <%= link_to 'Show', idea %>
-            <div class="card-footer col s2">
-                <%= link_to "Dislike", dislike_idea_path(idea),class: 'vote ', method: :put, remote: true,data: {id: idea.id } %>
-                
-               <%= link_to "Like", like_idea_path(idea),class: 'vote', method: :put, remote: true,data: {id: idea.id } %>
-            </div>
+        <div class="col s6">
+          <p class="black-text">
+            <%= link_to idea do %> 
+            <%=idea.describe%>
+            <% end %>
+          </p>
+        </div>
+
+         <!-- Modal Trigger -->
+  
+
+ 
+        <div class="col s3">
+          <%= link_to  dislike_idea_path(idea),class: 'vote col s12 m6', method: :put, remote: true,data: {id: idea.id } do %>
+            <%= image_tag('/imgs/icons/apoio.png', class:"", size:"30x30") %>
+              <% end %>
+                <%= link_to like_idea_path(idea),class: 'vote col s12 m4', method: :put, remote: true,data: {id: idea.id } do%>
+                  <i class="material-icons">thumb_down</i>
+                  <% end %>
+        </div>
+        </div>
+      <div class="card-footer">
+        <%= social_share_button_tag(idea.title, :url => "http://myapp.com/foo/bar") %>
       </div>
     </div>
-
     <ul class="collapsible" data-collapsible="accordion">
-        <li>
-          <div class="collapsible-header">
-            <i class="material-icons">comment</i>Comentários</div>
-          <div id="<%= idea.id %>" class="collapsible-body">
-            <% if idea.comments.any?%> 
-            <span><%=idea.comments.first.body%></span>
-            <span><%=idea.comments.first.body%></span>
-            <% else%>
-            <span>Nenhum comentário para essa ideia.</span>
-            <%end%>     
-          </div>
-        </li>
-      </ul>
-
-  </div>
-  <%= form_with(model: @comment, remote: true, :html => { :role => "form" }) do |form| %>
-    <% if @comment.errors.any? %>
-      <div id="error_explanation">
-        <h2>
-          <%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
-
-        <ul>
-          <% @comment.errors.full_messages.each do |message| %>
+      <li>
+        <div class="collapsible-header">
+          <i class="material-icons">comment</i>Comentários</div>
+        <div  class="collapsible-body">
+          <ul id="<%= idea.id %>">
+          <% if idea.comments.any?%>
+            <% idea.comments.each do |comment| %>
             <li>
-              <%= message %>
+              <div class="row">
+                <div class="col s4">
+                  <% if comment.member.image? %>
+                  <%= image_tag(comment.member.image, class:"circle responsive-img") %>
+                  <% end %>
+                  <span> <%= comment.member.name %></span>
+                </div>
+                <div class="col s8">
+                    <span>
+                      <%=comment.body%>
+                    </span>
+                </div>
+              </div>
             </li>
-            <% end %>
-        </ul>
-      </div>
-      <% end %>
-        <div class="field">
-          <%= form.label :body %>
-            <%= form.text_field :body, id: :comment_body %>
+            <% end %>  
+          </ul>
+          <% else%>
+              <span>Nenhum comentário para essa ideia.</span>
+         <%end%>
         </div>
-        <div class="field">
-          <%= form.hidden_field :idea_id, value: idea.id %>
-        </div>
-        <div class="actions">
-          <%= form.submit %>
-        </div>
-        <% end %>
-
+      </li>
+    </ul>
+  </div>
 </div>
+<%= form_with(model: @comment, remote: true, :html => { :role => "form" }) do |form| %>
+  <% if @comment.errors.any? %>
+    <div id="error_explanation">
+      <h2>
+        <%= pluralize(@comment.errors.count, "error") %> prohibited this comment from being saved:</h2>
+
+      <ul>
+        <% @comment.errors.full_messages.each do |message| %>
+          <li>
+            <%= message %>
+          </li>
+          <% end %>
+      </ul>
+    </div>
+    <% end %>
+      <div class="row">
+        <div class="input-field">
+          <%= form.text_field :body, id: :comment_body %>
+            <%= form.label :body, "Insira seu Comentário" %>
+        </div>
+      </div>
+      <div class="field">
+        <%= form.hidden_field :idea_id, value: idea.id %>
+      </div>
+      <div class="actions">
+          <%= button_tag( :class => "waves-effect waves-light blue right btn") do %>
+         <i class=" material-icons">chat_bubble_outline</i>
+        <% end %>        
+      
+      </div>
+
+      <% end %>
