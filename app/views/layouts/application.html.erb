@@ -77,7 +77,37 @@
   </ul>
   <%= link_to "Dislike", filter_path(sector_ids:[1,2,3]),class: 'vote ', remote: true %>
     <%= yield %>
+    <div class="fixed-action-btn toolbar">
+        <a class="btn-floating btn-large orange">
+          <i class="large material-icons">apps</i>
+        </a>
+        <ul>
+          <% if current_member.isCitzen? %>
+          <li class="waves-effect waves-light">
+            <%=  link_to  new_idea_path, remote: true do %>
+              <i class="material-icons">lightbulb_outline</i>
+              <% end %>
+          </li>
+          <% else %>
+          <li class="waves-effect waves-light">
+            <%=  link_to  new_contest_path, remote: true do %>
+              <%= image_tag('/imgs/icons/trofeu.png', size:'25x25', class:'icon-contest')%>
+              <% end %>
+          </li>
+          <% end %>
+          <li class="waves-effect waves-light">
+              <%= link_to root_path do %>
+              <i class="material-icons">home</i>
+              <% end %>
+          </li>
+          <li class="waves-effect waves-light">
+              <%=  link_to  contests_path do %>
+                <i class="material-icons">search</i>
+                <% end %>
+            </li>
 
+        </ul>
+      </div>
       <footer class="page-footer blue">
         <div class="container">
           <div class="row">

@@ -154,8 +154,8 @@ nav .brand-logo {
     box-shadow: 0 1px 0 0 #0089ec !important;
 }
 
-.active{
-    color: red;
+.voted{
+    color: rgb(255, 187, 0);
 }
 
 
@@ -177,3 +177,29 @@ nav .brand-logo {
 .describe{
     text-align: justify;
 }
+
+
+/*floating button*/
+
+.icon-contest{
+    margin-top: 14px;
+}
+
+/*end*/
+
+
+/*card*/
+.idea{
+    border-left: 2px solid orange;
+}
+.contest {
+    border-left: 2px solid #2196F3 ;
+}
+
+.toolbar li a {
+    color: white !important;
+}
+
+a, a:visited, a:active {
+    color: inherit !important;
+  }

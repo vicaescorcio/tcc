@@ -1,36 +1,43 @@
 <div class="row">
-    <div class="col s12 m12">
-      <div class="card-panel  z-depth-1">
-        <div class="row valign-wrapper">
-          <div class="col s1">
-            <% if current_member.image?%>
-            <%= image_tag(current_member.image, class:"circle responsive-img") %>
-            <%end%>
+  <div class="col s12 m12">
+    <div class="card-panel contest z-depth-1">
+        <div class="row">
+            <% contest.sectors.each do |sector| %>
+            <span class="new badge blue left"data-badge-caption=""> <%=sector.name%> </span>
+            <% end %>
           </div>
-          <div class="col s1">
-            <%=  link_to  contest_show_map_path(contest), remote: true, data: {id: contest.id } do %>
-            <i class="col s4 material-icons">location_on</i>
-            <% end %>  
-            </div>
-          <div class="col s8">
-            <span class="black-text">
-              <%=contest.describe%>
-
-            </span>
-          </div>
-            <div class="card-footer col s2">
-            <a href="#">
-              <i class="col s4 material-icons">favorite_border</i>
-            </a>
-            <a href="#">
-              <i class="col s4 material-icons">thumb_down</i>
-            </a>
-            <%= link_to 'Show', contest %>
-            <a href="#">
-              <i class="col s4 material-icons">chat_bubble_outline</i>
-            </a>            
-          </div>
+      <div class="row valign-wrapper">
+        <div class="col s1">
+          <% if contest.member.image?%>
+            <%= image_tag(contest.member.image, class:"circle") %>
+              <%end%>
         </div>
+        <div class="col s1">
+          <%=  link_to  contest_show_map_path(contest), remote: true, data: {id: contest.id } do %>
+            <i class="col s4 material-icons">location_on</i>
+            <% end %>
+        </div>
+        <div class="col s8">
+          <span class="black-text">
+            <%=contest.describe%>
+          </span>
+        </div>
+        <div class="card-footer col s2">
+          <div class="col s6">
+            <%=  link_to  new_idea_path(contest),data:{contest_id:contest.id},class:'waves-effect  waves-light', remote: true do %>
+              <%= image_tag('/imgs/icons/lampada.png', size:'30x30')%>
+                <% end %>
+          </div>
+          <div class="col s6 ">
+          <%= link_to  contest, class:'waves-effect  waves-light' do %>
+            <i class="material-icons">zoom_out_map</i>
+            <%end%>
+          </div>  
+        </div>
+      </div>
+      <div class="row">
+          <%= social_share_button_tag(contest.title, :url => "http://myapp.com/foo/bar") %>
       </div>
     </div>
   </div>
+</div>

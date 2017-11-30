@@ -2,38 +2,7 @@
   <div class="container">
   </div>
 </div>
-<div class="fixed-action-btn toolbar">
-  <a class="btn-floating btn-large orange">
-    <i class="large material-icons">apps</i>
-  </a>
-  <ul>
-    <li class="waves-effect waves-light">
-      <%=  link_to  new_idea_path(@contest),data:{contest_id:@contest.id}, remote: true do %>
-        <i class="material-icons">lightbulb_outline</i>
-        <% end %>
-    </li>
-    <li class="waves-effect waves-light">
-      <%=  link_to  new_contest_path, remote: true do %>
-        <i class="material-icons">search</i>
-        <% end %>
-    </li>
-    <li class="waves-effect waves-light">
-      <a href="#!">
-        <i class="material-icons">search</i>
-      </a>
-    </li>
-    <li class="waves-effect waves-light">
-      <a href="#!">
-        <i class="material-icons">pin_drop</i>
-      </a>
-    </li>
-    <li class="waves-effect waves-light">
-      <a href="#!">
-        <i class="material-icons">star_border</i>
-      </a>
-    </li>
-  </ul>
-</div>
+<%= render @contest%>
 <div class="container">
   <div class="section">
       <div id="modal1" class="modal modal-fixed-footer">

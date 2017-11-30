@@ -12,8 +12,6 @@ class HomeController < ApplicationController
   def filtering
     @locals = Idea.locals 
     @locals  = Idea.joins(:ideas_sectors).where('ideas_sectors.sector_id' => params[:sector_ids]).locals if params[:sector_ids].present? 
-    debugger
-    
     respond_to do |format|
       format.html
       format.js

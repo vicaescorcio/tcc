@@ -27,4 +27,8 @@ class Member < ApplicationRecord
          name: auth[:info][:name],
          image: auth[:info][:image])
   end
+
+  def isCitzen?
+     self.role == 'citzen'? true : false
+  end
 end
