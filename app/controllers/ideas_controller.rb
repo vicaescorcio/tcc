@@ -30,7 +30,7 @@ class IdeasController < ApplicationController
       current_member.likes @idea
     end
     respond_to do |format|
-      format.json { render json: [@idea.get_likes.size,@idea.get_dislikes.size,toggle]}
+      format.json { render json: [@idea.get_likes.size,@idea.get_dislikes.size,toggle,@idea.id]}
      end
   end
   
@@ -48,7 +48,7 @@ class IdeasController < ApplicationController
       current_member.dislikes @idea
     end
     respond_to do |format|
-        format.json { render json: [@idea.get_likes.size,@idea.get_dislikes.size,toggle]}
+        format.json { render json: [@idea.get_likes.size,@idea.get_dislikes.size,toggle, @idea.id]}
     end
 
   end

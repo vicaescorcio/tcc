@@ -15,13 +15,38 @@ $(document).on "ajax:error", "form", (evt, xhr, status, error) ->
 
 $(document).on 'ajax:success', 'a.vote', (status,data,xhr)->
   # update counter
+
+     
      buttons = $('a.vote')
      array = JSON.parse status.detail[2].responseText
      toggle = array[2]
+     
+     idea_id = '#idea_'+array[3]+' a.vote'
+     ot = $(idea_id).not(this)
+
+     other = $('img',ot)
+     main = $('img', this)
+
+     src_main = main.attr("src")
+     name_main = main.attr("name")
+     src_other = other.attr("src")
+     name_other = other.attr("name")
+       
+     console.log(other)
      if toggle is 1
-       $(this).removeClass('active')
+       #$(this).removeClass('activel')
+       main.attr("src",name_main)
+       main.attr("name", src_main)
      else if toggle is 2
-       buttons.not(this).removeClass('active')
-       $(this).addClass('active')
+       #buttons.not(this).removeClass('activel')
+       #$(this).addClass('activel')
+       
+
+       other.attr("src",name_other)
+       other.attr("name", src_other)
+       main.attr("src",name_main)
+       main.attr("name", src_main)
      else 
-       $(this).addClass('active')
+       main.attr("src",name_main)
+       main.attr("name", src_main)
+      # $(this).addClass('activel')

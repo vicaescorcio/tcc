@@ -75,7 +75,6 @@
       <%= link_to('Logout', destroy_member_session_path, method: :delete) %>
     </li>
   </ul>
-  <%= link_to "Dislike", filter_path(sector_ids:[1,2,3]),class: 'vote ', remote: true %>
     <%= yield %>
     <div class="fixed-action-btn toolbar">
         <a class="btn-floating btn-large orange">
